@@ -1,26 +1,32 @@
 package tests;
 
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 
 public class LoginPageTest extends BaseTest {
-    String userNameInput = "user-name";
-    String passwordInput = "password";
-    String loginButton1 = "[value=Login]";
+    @DataProvider(name = "loginData")
+    public Object[][] inputForITechTask() {
+        return new Object[][]{
+                {"", "secret_sauce", "Epic sadface: Username is required"},
+                {"problem_user", "", "Epic sadface: Password is required"},
+                {"abv", "secret_sauce", "Epic sadface: Username and password do not match any user in this service"},
+                {"locked_out_user", "secret_sauce", "Epic sadface: Sorry, this user has been locked out."},
+        };
+    }
 
-
-    @Test
+    @Test(retryAnalyzer = Retry.class)
     public void checkingAddingToCart() {
         loginPage.open();
         loginPage.login("problem_user", "secret_sauce");
     }
 
-    @Test
-    public void usernameShouldBeRequired() {
+    @Test(dataProvider = "loginData")
+    public void usernameShouldBeRequired(String userName, String password, String errorMessage) {
         loginPage.open();
-        loginPage.login("", "secret_sauce");
-        Assert.assertEquals(loginPage.getErrorMassage(), "Epic sadface: Username is required", "Сообщение об ошибке не верно");
+        loginPage.login(userName, password);
+        Assert.assertEquals(loginPage.getErrorMassage(), errorMessage, "Сообщение об ошибке не верно");
     }
 
     @Test
