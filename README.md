@@ -103,5 +103,5 @@ _mvn clean -Dtest=ProductsCriticalPathTest#addToCart+checkTheNameItemInTheCart t
 
 **Команда для запуска Test Suite**
 
-_mvn clean test -DsuiteXmlFile=src/test/resources/regression.xml_
+_mvn clean test -DsuiteXmlFile='src/test/resources/regression.xml'_
 

@@ -1,17 +1,20 @@
 package tests;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import utils.AllureUtils;
 
 public class InventoryPageTest extends BaseTest {
 
-    @Test
+    @Test (description = "Checking if the menu is displayed")
     public void checkMenuIsDisplayed() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
         Assert.assertEquals(inventoryPage.isMenuDisplayed(), "Open Menu", "BURGER MENU not found");
+        AllureUtils.takeScreenshot(driver);
     }
 
-    @Test
+    @Test(description = "Checking that the Burger menu displays the section name 'All Items'")
     public void allItemsInTheBurgerMenu() throws InterruptedException {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -20,7 +23,7 @@ public class InventoryPageTest extends BaseTest {
         Assert.assertEquals(inventoryPage.allItemsInTheBurgerMenu(), "ALL ITEMS", "Link ALL ITEMS not found");
     }
 
-    @Test
+    @Test(description = "Checking that the Burger menu displays the section name 'About'")
     public void aboutInTheBurgerMenu() throws InterruptedException {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -29,7 +32,7 @@ public class InventoryPageTest extends BaseTest {
         Assert.assertEquals(inventoryPage.aboutInTheBurgerMenu(), "ABOUT", "Link ABOUT not found");
     }
 
-    @Test
+    @Test(description = "Checking that the Burger menu displays the section name 'Logout'")
     public void logoutInTheBurgerMenu() throws InterruptedException {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -38,7 +41,7 @@ public class InventoryPageTest extends BaseTest {
         Assert.assertEquals(inventoryPage.logoutInTheBurgerMenu(), "LOGOUT", "Link LOGOUT not found");
     }
 
-    @Test
+    @Test(description = "Checking that the Burger menu displays the section name 'Reset App State'")
     public void resetAppStateInTheBurgerMenu() throws InterruptedException {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
