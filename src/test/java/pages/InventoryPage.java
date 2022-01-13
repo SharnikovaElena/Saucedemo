@@ -1,7 +1,10 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class InventoryPage extends BasePage {
 
@@ -19,36 +22,47 @@ public class InventoryPage extends BasePage {
 
     public void open() {
         driver.get("https://www.saucedemo.com/inventory.html");
+        waitForPageLoaded();
     }
 
+   @Step("Find an element on the Inventory Page to confirm that we are on this page")
     public String checkTheInventoryPage() {
         return driver.findElement(TITLE_NAME).getText();
     }
 
+    @Step("Clicking on the button 'Add to cart'")
     public void addToCart() {
         driver.findElement(ADD_PRODUCT_BUTTON).click();
     }
 
+    @Step("Find an element on the Inventory Page to confirm that Menu is displayed")
     public String isMenuDisplayed() {
         return driver.findElement(BURGER_MENU).getText();
     }
 
+    @Step("Opening 'MENU'")
     public void openMENU() {
         driver.findElement(BURGER_MENU).click();
     }
 
+    @Step("Find the 'All Items' section in the Burger menu")
     public String allItemsInTheBurgerMenu() {
+//        wait = new WebDriverWait(driver, 20);
+//       wait.until(ExpectedCondition.visi)
         return driver.findElement(ALL_ITEMS).getText();
     }
 
+    @Step("Find the 'About' section in the Burger menu")
     public String aboutInTheBurgerMenu() {
         return driver.findElement(ABOUT).getText();
     }
 
+    @Step("Find the 'Logout' section in the Burger menu")
     public String logoutInTheBurgerMenu() {
         return driver.findElement(LOGOUT).getText();
     }
 
+    @Step("Find the 'Reset App State' section in the Burger menu")
     public String resetAppStateInTheBurgerMenu() {
         return driver.findElement(RESET_APP_STATE).getText();
     }
