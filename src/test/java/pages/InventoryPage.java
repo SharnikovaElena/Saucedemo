@@ -1,11 +1,13 @@
 package pages;
 
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+@Log4j2
 public class InventoryPage extends BasePage {
 
     public static final By BURGER_MENU = By.id("react-burger-menu-btn");
@@ -37,6 +39,7 @@ public class InventoryPage extends BasePage {
 
     @Step("Find an element on the Inventory Page to confirm that Menu is displayed")
     public String isMenuDisplayed() {
+        log.info("Find an element on the Inventory Page to confirm that Menu is displayed");
         return driver.findElement(BURGER_MENU).getText();
     }
 

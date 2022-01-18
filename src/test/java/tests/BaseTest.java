@@ -1,6 +1,7 @@
 package tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -21,6 +22,7 @@ public class BaseTest {
     InventoryPage inventoryPage;
     CartPage cartPage;
     WebDriverWait wait;
+
 
     @BeforeMethod (description = "Setup and start browser")
     public void setup(ITestContext context) {
