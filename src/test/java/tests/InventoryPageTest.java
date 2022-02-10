@@ -1,17 +1,23 @@
 package tests;
 
+import lombok.extern.log4j.Log4j2;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import utils.AllureUtils;
 
+@Log4j2
 public class InventoryPageTest extends BaseTest {
 
     @Test (description = "Checking if the menu is displayed")
     public void checkMenuIsDisplayed() {
+        log.info("Test start checkMenuIsDisplayed");
+        log.info("For Login use userName:'standard_user' and password:'secret_sauce'");
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
+        log.debug("AsserEquels checking that BURGER MENU is displayed");
         Assert.assertEquals(inventoryPage.isMenuDisplayed(), "Open Menu", "BURGER MENU not found");
         AllureUtils.takeScreenshot(driver);
+        log.info("Completion Test checkMenuIsDisplayed");
     }
 
     @Test(description = "Checking that the Burger menu displays the section name 'All Items'")
